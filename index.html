@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slap Game!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <header>
+        <span>Enemy Name: <span id="name"></span></span>
+        <br />
+        <span>Health: <span id="health">--</span></span>
+        <br />
+        <span>Number of Hits Taken: <span id="hits"></span></span>
+    </header>
+    <img src="https://www.dailydot.com/wp-content/uploads/63e/76/95e4d07700e71c5ea0fb33f7b89cbf98.jpg" width="200px" />
+    <footer>
+        <button class="btn btn-primary" onclick="slap(1)">Slap</button>
+        <button class="btn btn-primary" onclick="slap(5)">Punch</button>
+        <button class="btn btn-primary" onclick="slap(10)">Kick</button>
+    </footer>
+    <script src="game.js"></script>
+</body>
+</html>
