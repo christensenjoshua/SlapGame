@@ -75,7 +75,7 @@ function chooseOpponent(name) {
     update()
 }
 function giveItem(item) {
-    if (opponent.items.length < 2) {
+    if (opponent.items.length < 3) {
         opponent.items.push(items[item])
         let itemList = ''
         for (let i = 0; i < opponent.items.length; i++) {
