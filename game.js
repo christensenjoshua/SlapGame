@@ -10,15 +10,29 @@ let items = {
     bodyArmor:new CreateItem('Body Armor',0.7,'A heavy suit of armor')
 }
 function slap(reduction){
+    let modifiers = addMods()
+    console.log(modifiers+' for modifiers')
+    console.log(opponent.health+' early health')
     console.log(opponent)
-    opponent.health -= reduction * addMods()
+    opponent.health -= Math.round(reduction * modifiers)
     opponent.hits ++
+    console.log('opponents health is '+opponent.health)
+    if(opponent.health < 0){
+        console.log('opponents health was '+opponent.health+' setting to 0')
+        opponent.health = 0
+    }
     update()
+    if(opponent.health == 0){
+        updateWin()
+    }
 }
 function update(){
-    document.getElementById('name').innerText = opponent.name
     document.getElementById('health').innerText = opponent.health
     document.getElementById('hits').innerText = opponent.hits
+}
+function updateWin(){
+    alert('You won!!')
+    reInitialize()
 }
 function CreateFighter(name, health, kick, punch, uppercut, hadouken, mobility, image){
     this.name = name
@@ -38,23 +52,44 @@ function CreateItem(name, modifier, description){
     this.modifier = modifier
     this.description = description
 }
-function giveShield(){
-    opponent.items.push(items['shield'])
-}
 function addMods(){
     let mods = 1
     for (let i = 0; i < opponent.items.length; i++) {
         const element = opponent.items[i];
-        mods -= element
+        mods -= element.modifier
+    }
+    if(mods < 0.1){
+        mods = 0.1
     }
     return mods
 }
 function chooseOpponent(name){
-    opponent = opponents[name]
+    opponent = JSON.parse(JSON.stringify(opponents[name]))
+    document.getElementById('name').innerText = opponent.name
     document.getElementById('opponentChoice').style.display = 'none'
     document.getElementById('opponentPicture').src = opponent.image
     document.getElementById('opponentPicture').style.display = 'block'
     document.getElementById('fightingOptions').style.display = 'block'
     document.getElementById('opponentStats').style.display = 'block'
+    document.getElementById('items').style.display = 'block'
     update()
+}
+function giveItem(item){
+    opponent.items.push(items[item])
+    let itemList = ''
+    for (let i = 0; i < opponent.items.length; i++) {
+        const element = opponent.items[i];
+        itemList += 'Item: '+element.name+'<br />Defensive Modifier: '+element.modifier+'<br />Description: '+element.description+'<br />'
+    }
+    document.getElementById('opponentItems').innerHTML = itemList
+}
+function reInitialize(){
+    opponent = {}
+    document.getElementById('name').innerText = 'Choose Your Opponent!'
+    document.getElementById('opponentChoice').style.display = 'block'
+    document.getElementById('opponentPicture').style.display = 'none'
+    document.getElementById('fightingOptions').style.display = 'none'
+    document.getElementById('opponentStats').style.display = 'none'
+    document.getElementById('opponentItems').innerHTML = '--'
+    document.getElementById('items').style.display = 'none'
 }

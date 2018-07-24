@@ -12,30 +12,41 @@
 </head>
 
 <body>
-    <div class="container-fuild">
-        <header>
-            <h1 id='name'>Choose Your Opponent!</h1>
-            <p id='opponentChoice'>
-                <button class="btn btn-primary" onclick="chooseOpponent('ryu')">Ryu</button>
-                <button class="btn btn-primary" onclick="chooseOpponent('ken')">Ken</button>
+    <div class="opaque">
+    <header>
+        <h1 id='name'>Choose Your Opponent!</h1>
+        <p id='opponentChoice'>
+            <button class="btn btn-primary" onclick="chooseOpponent('ryu')">Ryu</button>
+            <button class="btn btn-primary" onclick="chooseOpponent('ken')">Ken</button>
+        </p>
+    </header>
+    <div class="container-fluid">
+        <div id="opponentStats" style="display:none;">
+            <h3>Health:
+                <span id='health'></span>
+            </h3>
+            <h3>Hits Taken:
+                <span id='hits'></span>
+            </h3>
+        </div>
+        <div id="items" style="display:none;">
+            <button class="btn btn-primary" onclick="giveItem('shield')">Give Shield</button>
+            <button class="btn btn-primary" onclick="giveItem('helmet')">Give Helmet</button>
+            <button class="btn btn-primary" onclick="giveItem('bodyArmor')">Give Body Armor</button>
+            <h3>Opponent Has:</h3>
+            <p>
+                <span id="opponentItems">--</span>
             </p>
-            <div id="opponentStats" style="display:none;">
-                <p>Health:
-                    <span id='health'></span>
-                </p>
-                <p>Hits Taken:
-                    <span id='hits'></span>
-                </p>
-            </div>
-        </header>
+        </div>
         <img id="opponentPicture" src="" width="200px" style="display:none;" />
-        <footer>
-            <div id="fightingOptions" style="display:none;">
-                <button class="btn btn-primary" onclick="slap(1)">Slap</button>
-                <button class="btn btn-primary" onclick="slap(5)">Punch</button>
-                <button class="btn btn-primary" onclick="slap(10)">Kick</button>
-            </div>
-        </footer>
+    </div>
+    <footer>
+        <div id="fightingOptions" style="display:none;">
+            <button class="btn btn-primary" onclick="slap(1)">Slap</button>
+            <button class="btn btn-primary" onclick="slap(5)">Punch</button>
+            <button class="btn btn-primary" onclick="slap(10)">Kick</button>
+        </div>
+    </footer>
     </div>
     <script src="game.js"></script>
 </body>
