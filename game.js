@@ -5,9 +5,9 @@ let opponents = {
     ryu: new CreateFighter('Ryu', 100, 15, 10, 25, 60, 55, 'https://vignette.wikia.nocookie.net/streetfighter/images/4/46/Ryurender.png/revision/latest?cb=20170728171704')
 }
 let items = {
-    shield: new CreateItem('Shield', 0.3, 'This is an awesome shield!'),
-    helmet: new CreateItem('Helmet', 0.1, 'A pretty sad-looking helmet'),
-    bodyArmor: new CreateItem('Body Armor', 0.7, 'A heavy suit of armor')
+    shield: new CreateItem('Shield', 0.3, 'This is an awesome shield!', 'http://www.thinkgeek.com/images/products/zoom/kgii_loz_hylian_shield_backpack.jpg'),
+    helmet: new CreateItem('Helmet', 0.1, 'A pretty sad-looking helmet', 'https://i.pinimg.com/236x/e2/85/29/e285292b51ca023900848faccbb7721a--novi-sad-il-tempo.jpg'),
+    bodyArmor: new CreateItem('Body Armor', 0.7, 'A heavy suit of armor', 'http://www.darkknightarmoury.com/images/Product/medium/ED6223.png')
 }
 function slap(reduction) {
     let modifiers = addMods()
@@ -28,6 +28,11 @@ function slap(reduction) {
 }
 function update() {
     document.getElementById('health').innerText = opponent.health
+    // document.getElementById('healthbar').aria.valuenow = opponent.health
+    let healthbar = `
+    <div class="progress-bar" id="progresshealth" role="progressbar" aria-valuenow="${opponent.health}" aria-valuemin="0" aria-valuemax="100" style="width:${opponent.health}%;"></div>
+    `
+    document.getElementById('healthbar').innerHTML = healthbar
     document.getElementById('hits').innerText = opponent.hits
 }
 function updateWin() {
@@ -47,10 +52,11 @@ function CreateFighter(name, health, kick, punch, uppercut, hadouken, mobility, 
     this.hits = 0
     this.image = image
 }
-function CreateItem(name, modifier, description) {
+function CreateItem(name, modifier, description, image) {
     this.name = name
     this.modifier = modifier
     this.description = description
+    this.image = image
 }
 function addMods() {
     let mods = 1
@@ -68,7 +74,7 @@ function chooseOpponent(name) {
     document.getElementById('name').innerText = opponent.name
     document.getElementById('opponentChoice').style.display = 'none'
     document.getElementById('opponentPicture').src = opponent.image
-    document.getElementById('opponentPicture').style.display = 'block'
+    document.getElementById('opponentPicture').style.display = 'inline'
     document.getElementById('fightingOptions').style.display = 'block'
     document.getElementById('opponentStats').style.display = 'block'
     document.getElementById('items').style.display = 'block'
@@ -80,7 +86,7 @@ function giveItem(item) {
         let itemList = ''
         for (let i = 0; i < opponent.items.length; i++) {
             const element = opponent.items[i];
-            itemList += 'Item: ' + element.name + '<br />Defensive Modifier: ' + element.modifier + '<br />Description: ' + element.description + '<br />'
+            itemList += '<img src="'+element.image+'" width="50px" data-toggle="tooltip" data-placement"bottom" title="'+element.name+': '+element.description+'\nDefensive Modifier: '+element.modifer+'" alt="'+element.description+'" />'
         }
         document.getElementById('opponentItems').innerHTML = itemList
     }

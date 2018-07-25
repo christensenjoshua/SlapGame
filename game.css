@@ -1,9 +1,6 @@
-body{
-    background: url(https://80d2853cc4def76b377d-54344bc01a8b066c84096a8e7a3499ac.ssl.cf1.rackcdn.com/original/903397.JPG);
-    background-repeat: no-repeat;
-    background-size: auto;
+.container-fluid{
+    background: linear-gradient(to bottom, #e9ecef, #ffffff )
 }
-.opaque{
-    background-color:rgba(255,255,255,0.3);
-    height:100%;
+#progresshealth{
+    background-color: #ff0000;
 }
