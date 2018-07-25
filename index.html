@@ -19,8 +19,13 @@
                     <h1 class="display-4" id='name'>Choose Your Opponent!</h1>
                     <hr class="my-r" />
                     <p id='opponentChoice'>
-                        <button class="btn btn-primary btn-sm" onclick="chooseOpponent('ryu')">Ryu</button>
-                        <button class="btn btn-primary btn-sm" onclick="chooseOpponent('ken')">Ken</button>
+                        <button class="btn btn-primary btn" onclick="chooseOpponent('ryu')">Ryu</button>
+                        <button class="btn btn-primary btn" onclick="chooseOpponent('ken')">Ken</button>
+                    </p>
+                    <p id="playAgain" style="display:none;">
+                        Congratulations! You defeated your opponent!
+                        <br />
+                        <button class="btn btn-primary btn-lg" onClick="reInitialize()">Play Again</button>
                     </p>
                     <div id="opponentStats" style="display:none;">
                         <h3>Health:

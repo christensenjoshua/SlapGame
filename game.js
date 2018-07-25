@@ -22,13 +22,17 @@ function slap(reduction) {
         opponent.health = 0
     }
     update()
+    opponent.hitsToBreak --
+    if(opponent.hitsToBreak == 0){
+        removeItems()
+        opponent.hitsToBreak = 3
+    }
     if (opponent.health == 0) {
         updateWin()
     }
 }
 function update() {
     document.getElementById('health').innerText = opponent.health
-    // document.getElementById('healthbar').aria.valuenow = opponent.health
     let healthbar = `
     <div class="progress-bar" id="progresshealth" role="progressbar" aria-valuenow="${opponent.health}" aria-valuemin="0" aria-valuemax="100" style="width:${opponent.health}%;"></div>
     `
@@ -36,8 +40,7 @@ function update() {
     document.getElementById('hits').innerText = opponent.hits
 }
 function updateWin() {
-    alert('You won!!')
-    reInitialize()
+   document.getElementById('playAgain').style.display = 'block'
 }
 function CreateFighter(name, health, kick, punch, uppercut, hadouken, mobility, image) {
     this.name = name
@@ -51,6 +54,7 @@ function CreateFighter(name, health, kick, punch, uppercut, hadouken, mobility, 
     this.items = []
     this.hits = 0
     this.image = image
+    this.hitsToBreak = 3
 }
 function CreateItem(name, modifier, description, image) {
     this.name = name
@@ -80,6 +84,10 @@ function chooseOpponent(name) {
     document.getElementById('items').style.display = 'block'
     update()
 }
+function removeItems(){
+    opponent.items = []
+    document.getElementById('opponentItems').innerHTML = ''
+}
 function giveItem(item) {
     if (opponent.items.length < 3) {
         opponent.items.push(items[item])
@@ -93,6 +101,7 @@ function giveItem(item) {
 }
 function reInitialize() {
     opponent = {}
+   document.getElementById('playAgain').style.display = 'none'
     document.getElementById('name').innerText = 'Choose Your Opponent!'
     document.getElementById('opponentChoice').style.display = 'block'
     document.getElementById('opponentPicture').style.display = 'none'
