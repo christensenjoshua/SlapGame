@@ -86,7 +86,7 @@ function chooseOpponent(name) {
 }
 function removeItems(){
     opponent.items = []
-    document.getElementById('opponentItems').innerHTML = ''
+    document.getElementById('opponentItems').innerHTML = '--'
 }
 function giveItem(item) {
     if (opponent.items.length < 3) {
