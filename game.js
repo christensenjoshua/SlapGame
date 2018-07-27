@@ -22,8 +22,8 @@ function slap(reduction) {
         opponent.health = 0
     }
     update()
-    opponent.hitsToBreak --
-    if(opponent.hitsToBreak == 0){
+    opponent.hitsToBreak--
+    if (opponent.hitsToBreak == 0) {
         removeItems()
         opponent.hitsToBreak = 3
     }
@@ -40,7 +40,7 @@ function update() {
     document.getElementById('hits').innerText = opponent.hits
 }
 function updateWin() {
-   document.getElementById('playAgain').style.display = 'block'
+    document.getElementById('playAgain').style.display = 'block'
 }
 function CreateFighter(name, health, kick, punch, uppercut, hadouken, mobility, image) {
     this.name = name
@@ -84,7 +84,7 @@ function chooseOpponent(name) {
     document.getElementById('items').style.display = 'block'
     update()
 }
-function removeItems(){
+function removeItems() {
     opponent.items = []
     document.getElementById('opponentItems').innerHTML = '--'
 }
@@ -94,14 +94,14 @@ function giveItem(item) {
         let itemList = ''
         for (let i = 0; i < opponent.items.length; i++) {
             const element = opponent.items[i];
-            itemList += '<img src="'+element.image+'" width="50px" data-toggle="tooltip" data-placement"bottom" title="'+element.name+': '+element.description+'\nDefensive Modifier: '+element.modifer+'" alt="'+element.description+'" />'
+            itemList += '<img src="' + element.image + '" width="50px" data-toggle="tooltip" data-placement"bottom" title="' + element.name + ': ' + element.description + '\nDefensive Modifier: ' + element.modifer + '" alt="' + element.description + '" />'
         }
         document.getElementById('opponentItems').innerHTML = itemList
     }
 }
 function reInitialize() {
     opponent = {}
-   document.getElementById('playAgain').style.display = 'none'
+    document.getElementById('playAgain').style.display = 'none'
     document.getElementById('name').innerText = 'Choose Your Opponent!'
     document.getElementById('opponentChoice').style.display = 'block'
     document.getElementById('opponentPicture').style.display = 'none'
